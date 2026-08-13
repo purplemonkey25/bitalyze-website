@@ -58,9 +58,9 @@
       background: var(--bg);
     }
     .hero-phone {
-      position: absolute; top: 46%; left: 50%; z-index: 1;
+      position: absolute; top: 62%; left: 50%; z-index: 1;
       width: min(980px, 112vw);
-      transform: translate(-50%, -55%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
+      transform: translate(-50%, -46%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
       will-change: transform;
       -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 99%);
       mask-image: linear-gradient(to bottom, black 82%, transparent 99%);
@@ -827,7 +827,7 @@
       const rx = 5 - prog * 10;
       const ty = prog * -60;
       const sc = 1 - prog * 0.08;
-      heroPhone.style.transform = `translate(-50%, calc(-55% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
+      heroPhone.style.transform = `translate(-50%, calc(-46% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
       heroPhone.style.opacity = 1 - prog * 0.5;
     }, { passive: true });
   }
