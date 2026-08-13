@@ -8,20 +8,20 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #111410;
-      --bg2: #161912;
-      --card: #1C2018;
-      --border: rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.13);
-      --olive: #7A8C3E;
-      --olive-light: #9BAA52;
+      --bg: #ffffff;
+      --bg2: #f5f5f7;
+      --card: #f5f5f7;
+      --border: rgba(0,0,0,0.08);
+      --border2: rgba(0,0,0,0.12);
+      --olive: #4F5D26;
+      --olive-light: #6B7D34;
       --forest: #1E3A2F;
       --cream: #C8BC96;
-      --green: #4ADE80;
-      --yellow: #EAB308;
-      --white: #fff;
-      --muted: rgba(255,255,255,0.4);
-      --secondary: rgba(255,255,255,0.65);
+      --green: #16A34A;
+      --yellow: #B45309;
+      --white: #1D1D1F;
+      --muted: rgba(0,0,0,0.45);
+      --secondary: rgba(0,0,0,0.62);
     }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; line-height: 1.6; }
@@ -41,7 +41,7 @@
     .nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: -0.01em; transition: color .2s; }
     .nav-links a:hover { color: var(--white); }
     .nav-cta {
-      background: var(--white); color: #000; border-radius: 20px;
+      background: #1D1D1F; color: #fff; border-radius: 20px;
       padding: 7px 18px; font-size: 13px; font-weight: 600;
       text-decoration: none; letter-spacing: -0.01em; transition: opacity .2s;
     }
@@ -49,38 +49,49 @@
 
     /* ── HERO ── */
     .hero {
-      position: relative; height: 100vh; min-height: 640px;
+      position: relative; height: 100vh; min-height: 680px;
       display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: flex-end;
-      padding: 0 80px 80px;
+      justify-content: flex-end;
+      padding: 0 60px 64px;
       overflow: hidden;
+      background: var(--bg);
     }
-    .hero-video {
-      position: absolute; inset: 0; z-index: 0;
-      object-fit: cover; width: 100%; height: 100%;
+    .hero-phone {
+      position: absolute; top: 46%; left: 50%; z-index: 1;
+      width: min(320px, 62vw);
+      transform: translate(-50%, -55%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
+      border-radius: 46px; overflow: hidden;
+      box-shadow: 0 50px 100px rgba(0,0,0,.16), 0 10px 30px rgba(0,0,0,.08);
+      will-change: transform;
     }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to top,
-        rgba(17,20,16,0.97) 0%,
-        rgba(17,20,16,0.5) 50%,
-        rgba(17,20,16,0.15) 100%
-      );
+    .hero-phone img, .hero-phone video { width: 100%; display: block; }
+    .hero-video-toggle {
+      position: absolute; top: 28px; right: 32px; z-index: 3;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(0,0,0,.06); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #1D1D1F; transition: background .2s;
     }
-    .hero-content { position: relative; z-index: 2; max-width: 680px; }
+    .hero-video-toggle:hover { background: rgba(0,0,0,.1); }
+    .hero-video-toggle svg { width: 16px; height: 16px; }
+    .hero-bottom {
+      position: relative; z-index: 2;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .hero-content { max-width: 640px; }
     .hero-eyebrow {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--olive-light);
-      margin-bottom: 18px; display: block;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--secondary);
+      margin-bottom: 10px; display: block;
     }
     .hero h1 {
-      font-size: clamp(44px, 7vw, 80px); font-weight: 800;
-      letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 20px;
+      font-size: clamp(38px, 6vw, 68px); font-weight: 700;
+      letter-spacing: -0.04em; line-height: 1.04; margin-bottom: 18px;
     }
     .hero-sub {
-      font-size: clamp(15px, 1.8vw, 18px); color: var(--secondary);
-      max-width: 480px; line-height: 1.65; letter-spacing: -0.01em; margin-bottom: 36px;
+      font-size: clamp(15px, 1.6vw, 17px); color: var(--secondary);
+      max-width: 460px; line-height: 1.55; letter-spacing: -0.01em; margin-bottom: 28px;
     }
     .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-store {
@@ -90,9 +101,9 @@
       letter-spacing: -0.01em; text-decoration: none;
       transition: transform .2s, box-shadow .2s;
     }
-    .btn-store:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.5); }
-    .btn-light { background: var(--white); color: #000; }
-    .btn-dark { background: #1C1C1E; color: var(--white); border: 1px solid rgba(255,255,255,.1); }
+    .btn-store:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.18); }
+    .btn-light { background: #1D1D1F; color: #fff; }
+    .btn-dark { background: #1C1C1E; color: #fff; border: 1px solid rgba(255,255,255,.1); }
     .btn-store svg { width: 17px; height: 17px; flex-shrink: 0; }
 
     /* ── SECTION COMMON ── */
@@ -112,43 +123,6 @@
       letter-spacing: -0.01em; max-width: 500px;
     }
 
-    /* ── SMART COMPARE SECTION ── */
-    .compare-layout {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-      align-items: center; margin-top: 64px;
-    }
-    .compare-card {
-      background: linear-gradient(160deg, #111B2A, #0D1822);
-      border: 1px solid rgba(234,179,8,.18); border-radius: 24px; padding: 36px;
-    }
-    .trophy { font-size: 44px; margin-bottom: 10px; }
-    .compare-verdict-eye { font-size: 10px; color: var(--yellow); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
-    .compare-verdict-h { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 22px; }
-    .compare-verdict-h span { color: var(--yellow); }
-    .ctbl { width: 100%; border-collapse: collapse; }
-    .ctbl th { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; padding: 0 0 8px; text-align: right; font-weight: 500; }
-    .ctbl th:first-child { text-align: left; }
-    .ctbl td { font-size: 13px; padding: 9px 0; border-top: 1px solid var(--border); color: var(--secondary); text-align: right; }
-    .ctbl td:first-child { text-align: left; color: var(--white); }
-    .ctbl tr.win td { color: var(--yellow); font-weight: 600; }
-    .c-reasons { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
-    .c-reason {
-      display: flex; align-items: center; gap: 9px;
-      background: rgba(74,222,128,.06); border-radius: 10px; padding: 9px 13px;
-      font-size: 13px; color: var(--secondary);
-    }
-    .c-reason .ck { color: var(--green); font-size: 11px; }
-    .compare-steps { display: flex; flex-direction: column; gap: 28px; }
-    .cstep { display: flex; gap: 16px; align-items: flex-start; }
-    .cstep-num {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(255,255,255,.05); border: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 2px;
-    }
-    .cstep h4 { font-size: 15px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 3px; }
-    .cstep p { font-size: 13px; color: var(--muted); line-height: 1.55; }
-
     /* ── RECIPE SECTION ── */
     .recipe-layout {
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
@@ -156,13 +130,13 @@
     }
     .feat-phone {
       width: 260px; border-radius: 44px; overflow: hidden;
-      box-shadow: 0 60px 120px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.07);
+      box-shadow: 0 60px 120px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06);
       margin: 0 auto;
     }
     .feat-phone img { width: 100%; display: block; }
     .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
     .pill {
-      background: rgba(255,255,255,.05); border: 1px solid var(--border2);
+      background: rgba(0,0,0,.03); border: 1px solid var(--border2);
       border-radius: 50px; padding: 5px 13px;
       font-size: 12px; color: var(--secondary); letter-spacing: -.01em;
     }
@@ -178,7 +152,7 @@
     }
     .scroll-phone {
       width: 245px; border-radius: 44px; overflow: hidden;
-      box-shadow: 0 60px 120px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.08);
+      box-shadow: 0 60px 120px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06);
       will-change: transform; transition: transform .05s linear;
     }
     .scroll-phone-inner { position: relative; }
@@ -246,7 +220,7 @@
       font-size: 14px; align-self: flex-end; max-width: 85%; letter-spacing: -.01em;
     }
     .chat-ai {
-      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      background: rgba(0,0,0,.025); border: 1px solid var(--border);
       border-radius: 3px 13px 13px 13px; padding: 13px 15px;
       font-size: 13px; color: var(--secondary); line-height: 1.65; letter-spacing: -.005em;
     }
@@ -292,7 +266,7 @@
     .tagline-section {
       padding: 100px 48px; text-align: center;
       background: #0D0F0B;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .tagline-eye {
       font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
@@ -361,9 +335,9 @@
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero { padding: 0 28px 60px; }
+      .hero { padding: 0 24px; }
       .section { padding: 80px 28px; }
-      .compare-layout, .recipe-layout, .buddy-layout, .progress-layout { grid-template-columns: 1fr; }
+      .recipe-layout, .buddy-layout, .progress-layout { grid-template-columns: 1fr; }
       .scroll-text-col { display: none; }
       .scroll-phone-wrap { left: 50%; transform: translate(-50%, -50%); }
       .stats-inner { grid-template-columns: 1fr 1fr; }
@@ -383,7 +357,6 @@
     <span class="nav-logo-name">Bitalyze</span>
   </a>
   <div class="nav-links">
-    <a href="#compare">Smart Compare</a>
     <a href="#log">Ways to Log</a>
     <a href="#pantry">Pantry</a>
     <a href="#share">Share</a>
@@ -394,16 +367,19 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <!-- Pexels free stock video: grocery store / food market -->
-  <video class="hero-video" autoplay muted loop playsinline
-    src="https://videos.pexels.com/video-files/3076061/3076061-uhd_2560_1440_25fps.mp4">
-  </video>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-eyebrow">Build · Track · Share · Progress</span>
-    <h1>See how your habits<br />shape your progress.</h1>
-    <p class="hero-sub">Bitalyze makes healthy living simpler. Track calories, build recipes, compare foods, and make smarter nutrition choices every day.</p>
-    <div class="hero-btns">
+  <button class="hero-video-toggle" id="heroVideoToggle" aria-label="Pause video">
+    <svg id="heroPauseIcon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg id="heroPlayIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M7 5v14l12-7z"/></svg>
+  </button>
+  <div class="hero-phone" id="heroPhone">
+    <video id="heroPhoneVideo" autoplay muted loop playsinline src="hero.mp4"></video>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Build · Track · Share · Progress</span>
+      <h1>See how your habits shape your progress.</h1>
+      <p class="hero-sub">Bitalyze makes healthy living simpler. Track calories, build recipes, share your journey, and make smarter nutrition choices every day.</p>
+      <div class="hero-btns">
       <a class="btn-store btn-light" href="#">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         App Store
@@ -414,6 +390,7 @@
       </a>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- ── TAGLINE ── -->
@@ -421,66 +398,6 @@
   <span class="tagline-eye">Your nutrition ecosystem built by people who actually track</span>
   <div class="tagline-h fade">From grocery shopping to meal logging.</div>
   <div class="tagline-h2 fade">All in one place.</div>
-</section>
-
-<!-- ── SMART COMPARE ── -->
-<section class="section section-alt" id="compare">
-  <div class="inner">
-    <span class="eyebrow">From the grocery aisle</span>
-    <h2 class="section-h">Shop smarter.<br />Know what fits your goal.</h2>
-    <p class="section-sub">Scan up to 5 products, pick your goal, and Bitalyze tells you exactly which one wins — normalized per equal serving size.</p>
-
-    <div class="compare-layout">
-      <div class="compare-steps fade">
-        <div class="cstep">
-          <div class="cstep-num">1</div>
-          <div>
-            <h4>Name your comparison</h4>
-            <p>Tell Bitalyze what you're comparing — milk, yogurt, protein bars.</p>
-          </div>
-        </div>
-        <div class="cstep">
-          <div class="cstep-num">2</div>
-          <div>
-            <h4>Scan up to 5 nutrition labels</h4>
-            <p>Point at each label. Bitalyze reads them automatically.</p>
-          </div>
-        </div>
-        <div class="cstep">
-          <div class="cstep-num">3</div>
-          <div>
-            <h4>Set your goal</h4>
-            <p>Weight loss, high protein, low sugar, muscle gain — pick what matters.</p>
-          </div>
-        </div>
-        <div class="cstep">
-          <div class="cstep-num">4</div>
-          <div>
-            <h4>Get the verdict</h4>
-            <p>One clear winner, with a full breakdown of why it won.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="compare-card fade">
-        <div class="trophy">🏆</div>
-        <div class="compare-verdict-eye">Best Protein Efficiency</div>
-        <div class="compare-verdict-h">Nestlé Non-Fat Milk<br /><span>is the better fit.</span></div>
-        <table class="ctbl">
-          <thead><tr><th>Product</th><th>kcal</th><th>Protein</th><th>Fat</th></tr></thead>
-          <tbody>
-            <tr><td>Dairy Gold Ultra...</td><td>56</td><td>6.0g</td><td>2.2g</td></tr>
-            <tr class="win"><td>✓ Nestlé Non-Fat...</td><td>36</td><td>4.0g</td><td>0.0g</td></tr>
-            <tr><td>Ultra Heat Treat...</td><td>43</td><td>3.3g</td><td>1.1g</td></tr>
-          </tbody>
-        </table>
-        <div class="c-reasons">
-          <div class="c-reason"><span class="ck">✓</span> Highest protein per 100 kcal</div>
-          <div class="c-reason"><span class="ck">✓</span> Lowest calories — 36 kcal per 100ml</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ── RECIPE / COOK ── -->
@@ -524,8 +441,8 @@
           <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
             <div style="font-size:12px;color:var(--muted);">Log only what you ate</div>
             <div style="display:flex;gap:8px;">
-              <span style="font-size:11px;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;color:var(--secondary);">50% portion</span>
-              <span style="font-size:11px;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;color:var(--secondary);">by grams</span>
+              <span style="font-size:11px;background:rgba(0,0,0,.04);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;color:var(--secondary);">50% portion</span>
+              <span style="font-size:11px;background:rgba(0,0,0,.04);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;color:var(--secondary);">by grams</span>
             </div>
           </div>
         </div>
@@ -822,10 +739,6 @@
         <div class="faq-a">Point your camera at any food — Bitalyze's AI identifies what it is and estimates calories, protein, fats, carbs, and fiber. You can then refine the ingredients or adjust the portion size before logging.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">What is Smart Compare? <span class="faq-icon">+</span></button>
-        <div class="faq-a">Smart Compare lets you scan the nutrition labels of up to 5 products, set your nutrition goal (like high protein or low calorie), and Bitalyze compares them at equal serving sizes — then tells you exactly which product fits your goal best, and why.</div>
-      </div>
-      <div class="faq-item">
         <button class="faq-q">What is the Pantry? <span class="faq-icon">+</span></button>
         <div class="faq-a">The Pantry is your personal food library. Save any food — from meals you cook regularly to store-bought snacks — and log them later with a single tap. Just enter how many grams you ate, and Bitalyze auto-computes the macros.</div>
       </div>
@@ -880,6 +793,44 @@
 </footer>
 
 <script>
+<script>
+  // ── Hero video pause/play toggle ──
+  const heroToggle = document.getElementById('heroVideoToggle');
+  const heroPauseIcon = document.getElementById('heroPauseIcon');
+  const heroPlayIcon = document.getElementById('heroPlayIcon');
+  if (heroToggle) {
+    heroToggle.addEventListener('click', () => {
+      const vid = document.getElementById('heroPhoneVideo');
+      if (!vid) return;
+      if (vid.paused) {
+        vid.play();
+        heroPauseIcon.style.display = '';
+        heroPlayIcon.style.display = 'none';
+        heroToggle.setAttribute('aria-label', 'Pause video');
+      } else {
+        vid.pause();
+        heroPauseIcon.style.display = 'none';
+        heroPlayIcon.style.display = '';
+        heroToggle.setAttribute('aria-label', 'Play video');
+      }
+    });
+  }
+
+  // ── Hero phone scroll tilt ──
+  const heroPhone = document.getElementById('heroPhone');
+  if (heroPhone) {
+    window.addEventListener('scroll', () => {
+      const heroH = window.innerHeight;
+      const prog = Math.max(0, Math.min(1, window.scrollY / heroH));
+      const ry = -10 + prog * 20;
+      const rx = 5 - prog * 10;
+      const ty = prog * -60;
+      const sc = 1 - prog * 0.08;
+      heroPhone.style.transform = `translate(-50%, calc(-55% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
+      heroPhone.style.opacity = 1 - prog * 0.5;
+    }, { passive: true });
+  }
+
   // ── Apple scroll phone animation ──
   const scrollSec = document.querySelector('.scroll-section');
   const sPhone = document.getElementById('scrollPhone');
