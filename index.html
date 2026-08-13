@@ -47,6 +47,30 @@
     }
     .nav-search:hover { opacity: 1; }
     .nav-search svg { width: 15px; height: 15px; }
+    .nav-search-wrap { position: relative; }
+    .nav-search-panel {
+      display: none; position: absolute; top: 32px; right: -10px; z-index: 400;
+      width: 300px; background: #fff; border: 1px solid var(--border);
+      border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.14);
+      padding: 12px;
+    }
+    .nav-search-panel.open { display: block; }
+    .nav-search-panel input {
+      width: 100%; box-sizing: border-box; border: 1px solid var(--border2);
+      border-radius: 8px; padding: 9px 11px; font-size: 14px; outline: none;
+      font-family: 'Inter', sans-serif; color: var(--white);
+    }
+    .nav-search-results { margin-top: 8px; max-height: 280px; overflow-y: auto; }
+    .nav-search-result { padding: 8px 9px; border-radius: 8px; cursor: pointer; }
+    .nav-search-result:hover { background: var(--bg2); }
+    .nav-search-result .label { font-weight: 600; font-size: 13px; display: block; margin-bottom: 2px; }
+    .nav-search-result .snippet { color: var(--secondary); font-size: 12px; line-height: 1.4; }
+    .nav-search-empty { padding: 9px; font-size: 13px; color: var(--muted); }
+    .search-highlight { animation: searchFlash 1.6s ease; }
+    @keyframes searchFlash {
+      0% { background: rgba(155,170,82,.18); }
+      100% { background: transparent; }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -59,22 +83,13 @@
     }
     .hero-phone {
       position: absolute; top: 62%; left: 50%; z-index: 1;
-      width: min(980px, 112vw);
+      width: min(1080px, 122vw);
       transform: translate(-50%, -46%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
       will-change: transform;
-      -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 99%);
-      mask-image: linear-gradient(to bottom, black 82%, transparent 99%);
+      -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 97%);
+      mask-image: linear-gradient(to bottom, black 75%, transparent 97%);
     }
     .hero-phone img, .hero-phone video { width: 100%; display: block; }
-    .hero-video-toggle {
-      position: absolute; top: 28px; right: 32px; z-index: 3;
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(0,0,0,.06); border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: #1D1D1F; transition: background .2s;
-    }
-    .hero-video-toggle:hover { background: rgba(0,0,0,.1); }
-    .hero-video-toggle svg { width: 16px; height: 16px; }
     .hero-bottom {
       position: relative; z-index: 2;
       display: flex; justify-content: space-between; align-items: flex-end;
@@ -82,9 +97,9 @@
     }
     .hero-content { max-width: 640px; }
     .hero-eyebrow {
-      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-      color: var(--secondary);
-      margin-bottom: 10px; display: block;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 6px; display: block;
     }
     .hero-brand {
       font-size: clamp(34px, 5.5vw, 58px); font-weight: 800;
@@ -360,26 +375,28 @@
     <a href="#pantry">Pantry</a>
     <a href="#share">Share</a>
     <a href="#faq">FAQ</a>
-    <button class="nav-search" aria-label="Search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    </button>
+    <div class="nav-search-wrap">
+      <button class="nav-search" id="navSearchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <div class="nav-search-panel" id="navSearchPanel">
+        <input type="text" id="navSearchInput" placeholder="Search Bitalyze" autocomplete="off" />
+        <div class="nav-search-results" id="navSearchResults"></div>
+      </div>
+    </div>
     </div>
   </div>
 </nav>
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <button class="hero-video-toggle" id="heroVideoToggle" aria-label="Pause video">
-    <svg id="heroPauseIcon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-    <svg id="heroPlayIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M7 5v14l12-7z"/></svg>
-  </button>
   <div class="hero-phone" id="heroPhone">
     <video id="heroPhoneVideo" autoplay muted loop playsinline src="hero.mp4"></video>
   </div>
   <div class="hero-bottom">
     <div class="hero-content">
       <span class="hero-eyebrow">Get fit with</span>
-      <h1 class="hero-brand">Bitalyze</h1>
+      <h1 class="hero-brand">Bitalyze.</h1>
     </div>
     <div class="hero-btns">
       <a class="btn-store btn-light" href="#">
@@ -795,28 +812,6 @@
 
 <script>
 <script>
-  // ── Hero video pause/play toggle ──
-  const heroToggle = document.getElementById('heroVideoToggle');
-  const heroPauseIcon = document.getElementById('heroPauseIcon');
-  const heroPlayIcon = document.getElementById('heroPlayIcon');
-  if (heroToggle) {
-    heroToggle.addEventListener('click', () => {
-      const vid = document.getElementById('heroPhoneVideo');
-      if (!vid) return;
-      if (vid.paused) {
-        vid.play();
-        heroPauseIcon.style.display = '';
-        heroPlayIcon.style.display = 'none';
-        heroToggle.setAttribute('aria-label', 'Pause video');
-      } else {
-        vid.pause();
-        heroPauseIcon.style.display = 'none';
-        heroPlayIcon.style.display = '';
-        heroToggle.setAttribute('aria-label', 'Play video');
-      }
-    });
-  }
-
   // ── Hero phone scroll tilt ──
   const heroPhone = document.getElementById('heroPhone');
   if (heroPhone) {
@@ -857,6 +852,69 @@
     const sc = 0.97 + Math.sin(stepProg * Math.PI) * 0.04;
     sPhone.style.transform = `perspective(900px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
   }, { passive: true });
+
+  // ── Site search ──
+  const searchIndex = [
+    { id: 'log', label: 'Ways to Log' },
+    { id: 'recipe', label: 'Cook with real macros' },
+    { id: 'pantry', label: 'Pantry' },
+    { id: 'share', label: 'Share' },
+    { id: 'buddy', label: 'Bitalyze Buddy' },
+    { id: 'progress', label: 'Progress' },
+    { id: 'faq', label: 'FAQ' },
+    { id: 'download', label: 'Download' },
+  ];
+  const navSearchBtn = document.getElementById('navSearchBtn');
+  const navSearchPanel = document.getElementById('navSearchPanel');
+  const navSearchInput = document.getElementById('navSearchInput');
+  const navSearchResults = document.getElementById('navSearchResults');
+
+  if (navSearchBtn && navSearchPanel && navSearchInput && navSearchResults) {
+    navSearchBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navSearchPanel.classList.toggle('open');
+      if (navSearchPanel.classList.contains('open')) navSearchInput.focus();
+    });
+    navSearchPanel.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => navSearchPanel.classList.remove('open'));
+
+    navSearchInput.addEventListener('input', () => {
+      const q = navSearchInput.value.trim().toLowerCase();
+      navSearchResults.innerHTML = '';
+      if (!q) return;
+      let found = 0;
+      searchIndex.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (!el) return;
+        const text = (el.innerText || '').replace(/\s+/g, ' ').trim();
+        const lower = text.toLowerCase();
+        const idx = lower.indexOf(q);
+        if (idx !== -1) {
+          found++;
+          const start = Math.max(0, idx - 28);
+          const end = Math.min(text.length, idx + q.length + 40);
+          let snippet = text.slice(start, end);
+          if (start > 0) snippet = '…' + snippet;
+          if (end < text.length) snippet = snippet + '…';
+          const div = document.createElement('div');
+          div.className = 'nav-search-result';
+          div.innerHTML = `<span class="label">${item.label}</span><span class="snippet">${snippet}</span>`;
+          div.addEventListener('click', () => {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            el.classList.add('search-highlight');
+            setTimeout(() => el.classList.remove('search-highlight'), 1600);
+            navSearchPanel.classList.remove('open');
+            navSearchInput.value = '';
+            navSearchResults.innerHTML = '';
+          });
+          navSearchResults.appendChild(div);
+        }
+      });
+      if (found === 0) {
+        navSearchResults.innerHTML = '<div class="nav-search-empty">No results found.</div>';
+      }
+    });
+  }
 
   // ── FAQ accordion ──
   document.querySelectorAll('.faq-q').forEach(btn => {
