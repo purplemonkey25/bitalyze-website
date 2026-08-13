@@ -77,19 +77,19 @@
       position: relative; height: 100vh; min-height: 680px;
       display: flex; flex-direction: column;
       justify-content: flex-end;
-      padding: 0 60px 110px;
+      padding: 0 60px 64px;
       overflow: hidden;
       background: var(--bg);
     }
     .hero-phone {
-      position: absolute; top: 68px; left: 50%; z-index: 1;
-      height: min(640px, 64vh);
-      transform: translateX(-50%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
+      position: absolute; top: 62%; left: 50%; z-index: 1;
+      width: min(1080px, 122vw);
+      transform: translate(-50%, -46%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
       will-change: transform;
-      -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 98%);
-      mask-image: linear-gradient(to bottom, black 78%, transparent 98%);
+      -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 97%);
+      mask-image: linear-gradient(to bottom, black 75%, transparent 97%);
     }
-    .hero-phone img, .hero-phone video { height: 100%; width: auto; display: block; }
+    .hero-phone img, .hero-phone video { width: 100%; display: block; }
     .hero-bottom {
       position: relative; z-index: 2;
       display: flex; justify-content: space-between; align-items: flex-end;
@@ -97,9 +97,9 @@
     }
     .hero-content { max-width: 640px; }
     .hero-eyebrow {
-      font-size: 24px; font-weight: 600; letter-spacing: -0.01em;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
       color: var(--white);
-      margin-bottom: 4px; display: block;
+      margin-bottom: 6px; display: block;
     }
     .hero-brand {
       font-size: clamp(34px, 5.5vw, 58px); font-weight: 800;
@@ -349,7 +349,7 @@
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero { padding: 0 24px 90px; }
+      .hero { padding: 0 24px; }
       .section { padding: 80px 28px; }
       .recipe-layout, .buddy-layout, .progress-layout { grid-template-columns: 1fr; }
       .scroll-text-col { display: none; }
@@ -820,9 +820,9 @@
       const prog = Math.max(0, Math.min(1, window.scrollY / heroH));
       const ry = -10 + prog * 20;
       const rx = 5 - prog * 10;
-      const ty = prog * -40;
+      const ty = prog * -60;
       const sc = 1 - prog * 0.08;
-      heroPhone.style.transform = `translateX(-50%) translateY(${ty}px) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
+      heroPhone.style.transform = `translate(-50%, calc(-46% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
       heroPhone.style.opacity = 1 - prog * 0.5;
     }, { passive: true });
   }
