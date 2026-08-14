@@ -75,15 +75,15 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      min-height: 700px;
-      height: calc(100vh + 20px);
+      min-height: 680px;
+      height: 100vh;
       overflow: hidden;
       background: var(--bg);
       transform: translateZ(0);
       isolation: isolate;
     }
     .hero-phone {
-      position: absolute; top: 60px; bottom: 324px; left: 50%; z-index: 1;
+      position: absolute; top: 60px; bottom: 90px; left: 50%; z-index: 1;
       width: min(760px, 82vw);
       overflow: hidden;
       transform: translateX(-50%);
@@ -97,7 +97,7 @@
     }
     .hero-bottom {
       position: absolute; z-index: 2;
-      left: 60px; right: 60px; bottom: 324px;
+      left: 60px; right: 60px; bottom: 90px;
       display: flex; justify-content: space-between; align-items: flex-end;
       gap: 32px; flex-wrap: wrap;
     }
@@ -282,8 +282,8 @@
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero-bottom { left: 24px; right: 24px; bottom: 300px; }
-      .hero-phone { bottom: 300px; }
+      .hero-bottom { left: 24px; right: 24px; bottom: 70px; }
+      .hero-phone { bottom: 70px; }
       .section { padding: 80px 28px; }
       .log-layout { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: 1fr 1fr; }
