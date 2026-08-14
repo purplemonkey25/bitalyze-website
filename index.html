@@ -85,20 +85,20 @@
     .hero-phone {
       position: absolute; top: 62vh; left: 50%; z-index: 1;
       width: min(1080px, 122vw);
-      transform: translate(-50%, -46%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
+      transform: translate(-50%, -40%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
       will-change: transform;
       -webkit-mask-image: linear-gradient(to bottom,
-        black 0%, black 66%,
-        rgba(0,0,0,.7) 74%,
-        rgba(0,0,0,.4) 82%,
-        rgba(0,0,0,.14) 90%,
-        transparent 97%);
+        black 0%, black 48%,
+        rgba(0,0,0,.7) 58%,
+        rgba(0,0,0,.38) 68%,
+        rgba(0,0,0,.12) 78%,
+        transparent 88%);
       mask-image: linear-gradient(to bottom,
-        black 0%, black 66%,
-        rgba(0,0,0,.7) 74%,
-        rgba(0,0,0,.4) 82%,
-        rgba(0,0,0,.14) 90%,
-        transparent 97%);
+        black 0%, black 48%,
+        rgba(0,0,0,.7) 58%,
+        rgba(0,0,0,.38) 68%,
+        rgba(0,0,0,.12) 78%,
+        transparent 88%);
     }
     .hero-phone img, .hero-phone video { width: 100%; display: block; }
     .hero-bottom {
@@ -510,7 +510,7 @@
       const rx = 5 - prog * 10;
       const ty = prog * -60;
       const sc = 1 - prog * 0.08;
-      heroPhone.style.transform = `translate(-50%, calc(-46% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
+      heroPhone.style.transform = `translate(-50%, calc(-40% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
       heroPhone.style.opacity = 1 - prog * 0.5;
     }, { passive: true });
   }
