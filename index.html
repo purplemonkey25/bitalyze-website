@@ -225,11 +225,12 @@
     .highlights-track {
       display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
       padding: 0 80px 4px; scrollbar-width: none; -ms-overflow-style: none;
+      scroll-padding-left: 80px;
     }
     .highlights-track::-webkit-scrollbar { display: none; }
     .highlight-card {
       flex: 0 0 auto; scroll-snap-align: start;
-      width: min(952px, 82vw);
+      width: min(952px, 100%);
       aspect-ratio: 952 / 680;
       border-radius: 24px; overflow: hidden;
       box-shadow: 0 2px 24px rgba(0,0,0,.07);
@@ -244,8 +245,8 @@
       font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       color: #000000E0;
     }
-    .card-media { flex: 1; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding: 0 44px; }
-    .card-media img { width: 84%; max-width: 640px; display: block; margin: 0 auto; }
+    .card-media { flex: 1; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding: 0 24px; }
+    .card-media img { width: 96%; max-width: 900px; display: block; margin: 0 auto; }
     .highlights-controls {
       display: flex; align-items: center; gap: 16px;
       margin-top: 32px; padding-left: 80px;
@@ -306,7 +307,7 @@
       .section { padding: 80px 28px; }
       #highlights { padding: 90px 0 100px; }
       #highlights .inner { padding: 0 24px; }
-      .highlights-track { padding: 0 24px 4px; }
+      .highlights-track { padding: 0 24px 4px; scroll-padding-left: 24px; }
       .highlights-controls { padding-left: 24px; }
       .log-layout { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: 1fr 1fr; }
