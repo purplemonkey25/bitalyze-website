@@ -248,26 +248,26 @@
     .card-media { flex: 1; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding: 0 24px; }
     .card-media img { width: 96%; max-width: 900px; display: block; margin: 0 auto; }
     .highlights-controls {
-      display: flex; align-items: center; gap: 16px;
-      margin-top: 32px; padding-left: 80px;
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      margin-top: 40px;
     }
     .highlights-dots {
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(232,232,237,.72); border-radius: 28px; padding: 24px 16px;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(232,232,237,.72); border-radius: 32px; padding: 28px 20px;
     }
     .highlights-dot {
-      width: 8px; height: 8px; border-radius: 50%;
+      width: 10px; height: 10px; border-radius: 50%;
       background: rgba(0,0,0,.25); border: none; padding: 0; cursor: pointer;
       transition: all .3s;
     }
-    .highlights-dot.active { width: 20px; background: #1D1D1F; border-radius: 4px; }
+    .highlights-dot.active { width: 24px; background: #1D1D1F; border-radius: 5px; }
     .highlights-play {
-      width: 56px; height: 56px; border-radius: 50%; background: transparent;
+      width: 72px; height: 72px; border-radius: 50%; background: transparent;
       border: 1px solid rgba(0,0,0,.15);
       display: flex; align-items: center; justify-content: center; cursor: pointer; color: #1D1D1F;
       flex-shrink: 0;
     }
-    .highlights-play svg { width: 16px; height: 17px; }
+    .highlights-play svg { width: 22px; height: 23px; }
 
     /* ── FAQ ── */
     .faq-section { padding: 120px 80px; }
@@ -308,7 +308,6 @@
       #highlights { padding: 90px 0 100px; }
       #highlights .inner { padding: 0 24px; }
       .highlights-track { padding: 0 24px 4px; scroll-padding-left: 24px; }
-      .highlights-controls { padding-left: 24px; }
       .log-layout { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .cta-section { padding: 100px 28px; }
