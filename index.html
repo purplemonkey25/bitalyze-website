@@ -83,24 +83,27 @@
       isolation: isolate;
     }
     .hero-phone {
-      position: absolute; top: 62vh; left: 50%; z-index: 1;
-      width: min(1080px, 122vw);
-      transform: translate(-50%, -40%) perspective(1100px) rotateY(-10deg) rotateX(5deg);
+      position: absolute; top: 24px; left: 50%; z-index: 1;
+      width: min(760px, 82vw);
+      aspect-ratio: 1080 / 1420;
+      overflow: hidden;
+      transform: translateX(-50%);
       will-change: transform;
       -webkit-mask-image: linear-gradient(to bottom,
-        black 0%, black 48%,
-        rgba(0,0,0,.7) 58%,
-        rgba(0,0,0,.38) 68%,
-        rgba(0,0,0,.12) 78%,
-        transparent 88%);
+        black 0%, black 82%,
+        rgba(0,0,0,.5) 89%,
+        rgba(0,0,0,.15) 95%,
+        transparent 100%);
       mask-image: linear-gradient(to bottom,
-        black 0%, black 48%,
-        rgba(0,0,0,.7) 58%,
-        rgba(0,0,0,.38) 68%,
-        rgba(0,0,0,.12) 78%,
-        transparent 88%);
+        black 0%, black 82%,
+        rgba(0,0,0,.5) 89%,
+        rgba(0,0,0,.15) 95%,
+        transparent 100%);
     }
-    .hero-phone img, .hero-phone video { width: 100%; display: block; }
+    .hero-phone img, .hero-phone video {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: 50% 41%;
+    }
     .hero-bottom {
       position: absolute; z-index: 2;
       left: 60px; right: 60px; bottom: 324px;
@@ -500,17 +503,15 @@
 </footer>
 
 <script>
-  // ── Hero phone scroll tilt ──
+  // ── Hero phone scroll parallax ──
   const heroPhone = document.getElementById('heroPhone');
   if (heroPhone) {
     window.addEventListener('scroll', () => {
       const heroH = window.innerHeight;
       const prog = Math.max(0, Math.min(1, window.scrollY / heroH));
-      const ry = -10 + prog * 20;
-      const rx = 5 - prog * 10;
-      const ty = prog * -60;
-      const sc = 1 - prog * 0.08;
-      heroPhone.style.transform = `translate(-50%, calc(-40% + ${ty}px)) perspective(1100px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
+      const ty = prog * -50;
+      const sc = 1 - prog * 0.06;
+      heroPhone.style.transform = `translateX(-50%) translateY(${ty}px) scale(${sc})`;
       heroPhone.style.opacity = 1 - prog * 0.5;
     }, { passive: true });
   }
